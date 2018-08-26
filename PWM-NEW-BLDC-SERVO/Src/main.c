@@ -119,9 +119,9 @@ int main(void)
 //		  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, i);
 //	  	  HAL_Delay(2000);
 //	  }
-	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 3850);
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 3850); // 0 Degrees
 	  HAL_Delay(2000);
-	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 15350);
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 15350); // 180 Degress
 	  HAL_Delay(2000);
 //	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 9600);
 //	  HAL_Delay(1000);
