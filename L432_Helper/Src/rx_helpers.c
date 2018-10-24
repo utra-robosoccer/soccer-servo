@@ -103,11 +103,18 @@ static void processReadDataInst(){
     uint8_t id = buff[2];
     if(checksumIsValid && (id <= NUM_MOTORS)){
         bool addressIsValid = false;
+
+        uint16_t myId;
+        readDataTable(ID_IDX, &myId);
+        if((uint8_t)myId != id){
+            // Do not proceed if the ID in the packet is not the ID of this
+            // motor
+            return;
+        }
+
         uint8_t address = buff[5];
         Data_t data;
-
         data.id = id;
-
         switch(address){
             case REG_CURRENT_POSITION:
                 readDataTable(

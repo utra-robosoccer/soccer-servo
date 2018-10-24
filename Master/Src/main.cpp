@@ -43,6 +43,7 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
+#include <math.h>
 #include "AX12A.h"
 #include "MX28.h"
 
@@ -128,7 +129,7 @@ int main(void)
   AX12A motor(1, &uart1DaisyChain);
 
   volatile bool success;
-  float curPos;
+  float curPos = NAN;
   char msg[16];
   int num_printed;
   /* USER CODE END 2 */
@@ -143,7 +144,6 @@ int main(void)
   HAL_Delay(10);
 
   success = motor.getPosition(curPos);
-  HAL_Delay(10);
 
   num_printed = sprintf(msg, "%0.4f\n", curPos);
 
