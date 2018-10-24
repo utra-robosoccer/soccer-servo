@@ -109,6 +109,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HalUartInterface uartif;
   GpioInterfaceImpl gpioif;
@@ -124,7 +125,12 @@ int main(void)
 
   DaisyChain uart1DaisyChain(uart1Params);
 
-  MX28 motor(1, &uart1DaisyChain);
+  AX12A motor(1, &uart1DaisyChain);
+
+  volatile bool success;
+  float curPos;
+  char msg[16];
+  int num_printed;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -133,7 +139,20 @@ int main(void)
   {
 
   /* USER CODE END WHILE */
-  bool success = motor.setGoalPosition(150.0);
+  success = motor.setGoalPosition(150.0);
+  HAL_Delay(10);
+
+  success = motor.getPosition(curPos);
+  HAL_Delay(10);
+
+  num_printed = sprintf(msg, "%0.4f\n", curPos);
+
+  HAL_UART_Transmit(
+      &huart2,
+      (uint8_t*)msg,
+      static_cast<uint16_t>(num_printed),
+      10
+  );
   /* USER CODE BEGIN 3 */
 
   }
