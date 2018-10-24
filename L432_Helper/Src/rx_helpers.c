@@ -127,8 +127,6 @@ static void processReadDataInst(){
                 break;
         }
         if(addressIsValid){
-            // TODO(tyler) replace this with a hardware timer of 100-150 ms
-            osDelay(pdMS_TO_TICKS(1));
             xQueueSend(toBeSentQHandle, &data, 0);
         }
     }

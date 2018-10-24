@@ -63,9 +63,11 @@ void update_buffer_contents(Data_t* data){
  * @brief Sends the transmit buffer to the master device
  */
 void transmit_buffer_contents(void){
-    bool status;
+    // TODO(tyler) replace this with a hardware timer of 120-150 us
+    osDelay(pdMS_TO_TICKS(1));
+
     HAL_UART_Transmit_DMA(&huart1, (uint8_t*)buf, 8);
-    status = waitUntilNotifiedOrTimeout(NOTIFIED_FROM_TX_ISR, 1);
+    bool status = waitUntilNotifiedOrTimeout(NOTIFIED_FROM_TX_ISR, 1);
     if(!status){
         HAL_UART_AbortTransmit(&huart1);
     }

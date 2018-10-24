@@ -5923,45 +5923,45 @@ LOAD d:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.15
  .text.processWriteDataInst
                 0x08004454       0x80 Src/rx_helpers.o
  .text.processReadDataInst
-                0x080044d4       0x88 Src/rx_helpers.o
- .text.receive  0x0800455c       0x38 Src/rx_helpers.o
-                0x0800455c                receive
+                0x080044d4       0x80 Src/rx_helpers.o
+ .text.receive  0x08004554       0x38 Src/rx_helpers.o
+                0x08004554                receive
  .text.processData
-                0x08004594       0x20 Src/rx_helpers.o
-                0x08004594                processData
+                0x0800458c       0x20 Src/rx_helpers.o
+                0x0800458c                processData
  .text.HAL_UART_RxCpltCallback
-                0x080045b4       0x48 Src/rx_helpers.o
-                0x080045b4                HAL_UART_RxCpltCallback
+                0x080045ac       0x48 Src/rx_helpers.o
+                0x080045ac                HAL_UART_RxCpltCallback
  .text.HAL_MspInit
-                0x080045fc       0x90 Src/stm32l4xx_hal_msp.o
-                0x080045fc                HAL_MspInit
+                0x080045f4       0x90 Src/stm32l4xx_hal_msp.o
+                0x080045f4                HAL_MspInit
  .text.HAL_InitTick
-                0x0800468c       0x78 Src/stm32l4xx_hal_timebase_TIM.o
-                0x0800468c                HAL_InitTick
+                0x08004684       0x78 Src/stm32l4xx_hal_timebase_TIM.o
+                0x08004684                HAL_InitTick
  .text.SysTick_Handler
-                0x08004704        0x8 Src/stm32l4xx_it.o
-                0x08004704                SysTick_Handler
+                0x080046fc        0x8 Src/stm32l4xx_it.o
+                0x080046fc                SysTick_Handler
  .text.DMA1_Channel4_IRQHandler
-                0x0800470c       0x10 Src/stm32l4xx_it.o
-                0x0800470c                DMA1_Channel4_IRQHandler
+                0x08004704       0x10 Src/stm32l4xx_it.o
+                0x08004704                DMA1_Channel4_IRQHandler
  .text.DMA1_Channel5_IRQHandler
-                0x0800471c       0x10 Src/stm32l4xx_it.o
-                0x0800471c                DMA1_Channel5_IRQHandler
+                0x08004714       0x10 Src/stm32l4xx_it.o
+                0x08004714                DMA1_Channel5_IRQHandler
  .text.TIM1_UP_TIM16_IRQHandler
-                0x0800472c       0x10 Src/stm32l4xx_it.o
-                0x0800472c                TIM1_UP_TIM16_IRQHandler
+                0x08004724       0x10 Src/stm32l4xx_it.o
+                0x08004724                TIM1_UP_TIM16_IRQHandler
  .text.USART1_IRQHandler
-                0x0800473c       0x10 Src/stm32l4xx_it.o
-                0x0800473c                USART1_IRQHandler
+                0x08004734       0x10 Src/stm32l4xx_it.o
+                0x08004734                USART1_IRQHandler
  .text.SystemInit
-                0x0800474c       0x48 Src/system_stm32l4xx.o
-                0x0800474c                SystemInit
+                0x08004744       0x48 Src/system_stm32l4xx.o
+                0x08004744                SystemInit
  .text.update_buffer_contents
-                0x08004794       0x54 Src/tx_helpers.o
-                0x08004794                update_buffer_contents
+                0x0800478c       0x54 Src/tx_helpers.o
+                0x0800478c                update_buffer_contents
  .text.transmit_buffer_contents
-                0x080047e8       0x28 Src/tx_helpers.o
-                0x080047e8                transmit_buffer_contents
+                0x080047e0       0x30 Src/tx_helpers.o
+                0x080047e0                transmit_buffer_contents
  .text.HAL_UART_TxCpltCallback
                 0x08004810       0x48 Src/tx_helpers.o
                 0x08004810                HAL_UART_TxCpltCallback
@@ -6339,12 +6339,12 @@ OUTPUT(L432_Helper.elf elf32-littlearm)
  .debug_info    0x0001e4ec      0xd6d Src/gpio.o
  .debug_info    0x0001f259      0x197 Src/helpers.o
  .debug_info    0x0001f3f0     0x1b16 Src/main.o
- .debug_info    0x00020f06     0x13d7 Src/rx_helpers.o
- .debug_info    0x000222dd      0xe6f Src/stm32l4xx_hal_msp.o
- .debug_info    0x0002314c     0x140c Src/stm32l4xx_hal_timebase_TIM.o
- .debug_info    0x00024558     0x129b Src/stm32l4xx_it.o
- .debug_info    0x000257f3      0xdf6 Src/system_stm32l4xx.o
- .debug_info    0x000265e9     0x11cf Src/tx_helpers.o
+ .debug_info    0x00020f06     0x13ad Src/rx_helpers.o
+ .debug_info    0x000222b3      0xe6f Src/stm32l4xx_hal_msp.o
+ .debug_info    0x00023122     0x140c Src/stm32l4xx_hal_timebase_TIM.o
+ .debug_info    0x0002452e     0x129b Src/stm32l4xx_it.o
+ .debug_info    0x000257c9      0xdf6 Src/system_stm32l4xx.o
+ .debug_info    0x000265bf     0x11f9 Src/tx_helpers.o
  .debug_info    0x000277b8     0x16e0 Src/usart.o
  .debug_info    0x00028e98       0xa7 startup/startup_stm32l432xx.o
 
@@ -6661,12 +6661,12 @@ OUTPUT(L432_Helper.elf elf32-littlearm)
  .debug_line    0x0000efb9      0x83f Src/gpio.o
  .debug_line    0x0000f7f8      0x54c Src/helpers.o
  .debug_line    0x0000fd44      0xac1 Src/main.o
- .debug_line    0x00010805      0xb5c Src/rx_helpers.o
- .debug_line    0x00011361      0x842 Src/stm32l4xx_hal_msp.o
- .debug_line    0x00011ba3      0x872 Src/stm32l4xx_hal_timebase_TIM.o
- .debug_line    0x00012415      0xa9e Src/stm32l4xx_it.o
- .debug_line    0x00012eb3      0x87b Src/system_stm32l4xx.o
- .debug_line    0x0001372e      0xade Src/tx_helpers.o
+ .debug_line    0x00010805      0xb5b Src/rx_helpers.o
+ .debug_line    0x00011360      0x842 Src/stm32l4xx_hal_msp.o
+ .debug_line    0x00011ba2      0x872 Src/stm32l4xx_hal_timebase_TIM.o
+ .debug_line    0x00012414      0xa9e Src/stm32l4xx_it.o
+ .debug_line    0x00012eb2      0x87b Src/system_stm32l4xx.o
+ .debug_line    0x0001372d      0xadf Src/tx_helpers.o
  .debug_line    0x0001420c      0x8e4 Src/usart.o
  .debug_line    0x00014af0       0x7f startup/startup_stm32l432xx.o
 
@@ -6722,7 +6722,7 @@ OUTPUT(L432_Helper.elf elf32-littlearm)
  .debug_str     0x000cd6d4       0x7e Src/main.o
                               0xc6ea0 (size before relaxing)
  .debug_str     0x000cd752      0x139 Src/rx_helpers.o
-                              0xc6657 (size before relaxing)
+                              0xc6644 (size before relaxing)
  .debug_str     0x000cd88b       0x1b Src/stm32l4xx_hal_msp.o
                               0xc0bc3 (size before relaxing)
  .debug_str     0x000cd8a6       0x61 Src/stm32l4xx_hal_timebase_TIM.o
@@ -6732,7 +6732,7 @@ OUTPUT(L432_Helper.elf elf32-littlearm)
  .debug_str     0x000cd9ba       0x50 Src/system_stm32l4xx.o
                               0xc0866 (size before relaxing)
  .debug_str     0x000cda0a       0x29 Src/tx_helpers.o
-                              0xc64f8 (size before relaxing)
+                              0xc650b (size before relaxing)
  .debug_str     0x000cda33       0x1a Src/usart.o
                               0xc11bc (size before relaxing)
 

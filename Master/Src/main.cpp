@@ -136,23 +136,25 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int i = 0;
   while (1)
   {
 
   /* USER CODE END WHILE */
-  success = motor.setGoalPosition(150.0);
-  HAL_Delay(10);
+      success = motor.setGoalPosition(150.0);
+      success = motor.getPosition(curPos);
 
-  success = motor.getPosition(curPos);
+      num_printed = sprintf(msg, "%0.4f\n", curPos);
 
-  num_printed = sprintf(msg, "%0.4f\n", curPos);
-
-  HAL_UART_Transmit(
-      &huart2,
-      (uint8_t*)msg,
-      static_cast<uint16_t>(num_printed),
-      10
-  );
+      if(i % 1000 == 0){
+          HAL_UART_Transmit(
+              &huart2,
+              (uint8_t*)msg,
+              static_cast<uint16_t>(num_printed),
+              10
+          );
+      }
+      ++i;
   /* USER CODE BEGIN 3 */
 
   }
