@@ -127,6 +127,8 @@ int main(void)
   DaisyChain uart1DaisyChain(uart1Params);
 
   AX12A motor(1, &uart1DaisyChain);
+  AX12A motor2(2, &uart1DaisyChain);
+  AX12A motor3(3, &uart1DaisyChain);
 
   volatile bool success;
   float curPos = NAN;
@@ -136,16 +138,28 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int i = 1;
+  uint32_t loops = 1;
+  uint32_t numFailed = 0;
   while (1)
   {
 
   /* USER CODE END WHILE */
       success = motor.setGoalPosition(150.0);
-      success = motor.getPosition(curPos);
+      motor2.setGoalPosition(200.0);
+      motor3.setGoalPosition(10.0);
 
-      if(i % 1000 == 0){
-          num_printed = sprintf(msg, "%0.4f\n", curPos);
+      motor2.getPosition(curPos);
+      motor3.getPosition(curPos);
+//      HAL_Delay(1);
+      success = motor.getPosition(curPos);
+      if(!success){
+          ++numFailed;
+          curPos = NAN;
+      }
+
+      if(loops % 1000 == 0){
+          float ratio = 100.0 * static_cast<float>(loops - numFailed) / static_cast<float>(loops);
+          num_printed = sprintf(msg, "P:%0.4f|R:%0.2f\n", curPos, ratio);
           HAL_UART_Transmit(
               &huart2,
               (uint8_t*)msg,
@@ -153,7 +167,7 @@ int main(void)
               10
           );
       }
-      ++i;
+      ++loops;
   /* USER CODE BEGIN 3 */
 
   }
