@@ -26,6 +26,12 @@
 
 
 
+/********************************* Constants *********************************/
+extern const uint8_t NOTIFIED_FROM_TASK;
+
+
+
+
 /***************************** Function prototypes ***************************/
 /**
  * @brief Blocks a thread until it received the specified notification or
@@ -64,7 +70,7 @@ inline bool CHECK_NOTIFICATION(uint32_t val, uint32_t notificationMask){
  * @param arr Pointer to the beginning of the packet buffer
  * @param length The size of the buffer
  */
-inline uint8_t Dynamixel_ComputeChecksum(uint8_t *arr, int length){
+inline uint8_t Dynamixel_ComputeChecksum(uint8_t* arr, int length){
     uint8_t accumulate = 0;
 
     /* Loop through the array starting from the 2nd element of the array and

@@ -52,7 +52,8 @@ Src/tx_helpers.o: ../Src/tx_helpers.c \
  D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h \
  D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
  D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
- D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h
+ D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
+ D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/tim.h
 
 D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/tx_helpers.h:
 
@@ -161,3 +162,5 @@ D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Drivers/STM32L4xx_HAL_Driv
 D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 
 D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
+
+D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/tim.h:

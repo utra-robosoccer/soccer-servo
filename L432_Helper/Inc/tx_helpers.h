@@ -25,8 +25,9 @@
 
 
 /***************************** Function prototypes ***************************/
-void update_buffer_contents(Data_t* data);
-void transmit_buffer_contents(void);
+void updateBufferContents(void);
+void transmitBufferContents(void);
+void txTimerEventHandler(void);
 
 
 

@@ -23,9 +23,6 @@
 
 
 /********************************** Macros ***********************************/
-#define NOTIFIED_FROM_RX_ISR 0x40
-#define NUM_MOTORS 18
-
 #define INST_WRITE_DATA      0x03
 #define INST_READ_DATA       0x02
 #define REG_GOAL_POSITION    0x1E
@@ -33,10 +30,15 @@
 
 
 
+/******************************** Constants **********************************/
+static const uint8_t NOTIFIED_FROM_RX_ISR = 0x40;
+
+
+
 
 /****************************** Public Variables *****************************/
 extern osThreadId RXHandle;
-extern osMessageQId toBeSentQHandle;
+extern osThreadId TXHandle;
 
 
 
@@ -127,7 +129,12 @@ static void processReadDataInst(){
                 break;
         }
         if(addressIsValid){
-            xQueueSend(toBeSentQHandle, &data, 0);
+            // TODO(tyler): make this a task notification
+            xTaskNotify(
+                TXHandle,
+                NOTIFIED_FROM_TASK,
+                eSetBits
+            );
         }
     }
 }
@@ -173,16 +180,18 @@ void processData(){
  * @brief Callback function invoked upon finishing asynchronous UART RX
  */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    if(osHasStarted()){
+        BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-    if(huart == &huart1){
-        xTaskNotifyFromISR(
-            RXHandle,
-            NOTIFIED_FROM_RX_ISR,
-            eSetBits,
-            &xHigherPriorityTaskWoken
-        );
+        if(huart == &huart1){
+            xTaskNotifyFromISR(
+                RXHandle,
+                NOTIFIED_FROM_RX_ISR,
+                eSetBits,
+                &xHigherPriorityTaskWoken
+            );
+        }
+
+        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
     }
-
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }

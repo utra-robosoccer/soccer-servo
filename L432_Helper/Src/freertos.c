@@ -52,8 +52,6 @@
 #include "cmsis_os.h"
 
 /* USER CODE BEGIN Includes */     
-#include "usart.h"
-#include "types.h"
 #include "helpers.h"
 #include "tx_helpers.h"
 #include "rx_helpers.h"
@@ -76,9 +74,6 @@ osStaticThreadDef_t ControlControlBlock;
 osThreadId SensorHandle;
 uint32_t SensorBuffer[ 128 ];
 osStaticThreadDef_t SensorControlBlock;
-osMessageQId toBeSentQHandle;
-uint8_t toBeSentQBuffer[ 8 * sizeof( Data_t ) ];
-osStaticMessageQDef_t toBeSentQControlBlock;
 
 /* USER CODE BEGIN Variables */
 /**
@@ -165,11 +160,6 @@ void MX_FREERTOS_Init(void) {
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
-  /* Create the queue(s) */
-  /* definition and creation of toBeSentQ */
-  osMessageQStaticDef(toBeSentQ, 8, Data_t, toBeSentQBuffer, &toBeSentQControlBlock);
-  toBeSentQHandle = osMessageCreate(osMessageQ(toBeSentQ), NULL);
-
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -203,14 +193,12 @@ void StartRX(void const * argument){
 
 
 void StartTX(void const * argument){
-    Data_t data;
-
     for(;;){
-        while(xQueueReceive(toBeSentQHandle, &data, portMAX_DELAY) != pdTRUE);
+        waitUntilNotifiedOrTimeout(NOTIFIED_FROM_TASK, portMAX_DELAY);
 
-        update_buffer_contents(&data);
+        updateBufferContents();
 
-        transmit_buffer_contents();
+        transmitBufferContents();
     }
 }
 

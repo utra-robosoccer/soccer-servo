@@ -136,7 +136,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int i = 0;
+  int i = 1;
   while (1)
   {
 
@@ -144,9 +144,8 @@ int main(void)
       success = motor.setGoalPosition(150.0);
       success = motor.getPosition(curPos);
 
-      num_printed = sprintf(msg, "%0.4f\n", curPos);
-
       if(i % 1000 == 0){
+          num_printed = sprintf(msg, "%0.4f\n", curPos);
           HAL_UART_Transmit(
               &huart2,
               (uint8_t*)msg,
