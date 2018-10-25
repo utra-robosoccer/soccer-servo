@@ -78,7 +78,7 @@ static void processWriteDataInst(){
         // Write data into the data table based on the address in the packet
         uint8_t address = buff[5];
         writeDataTable(
-                address,
+            address,
             buff[6] | (buff[7] << 8)
         );
     }

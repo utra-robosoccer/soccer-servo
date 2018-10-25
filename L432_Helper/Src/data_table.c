@@ -14,6 +14,7 @@
 
 /********************************* Includes **********************************/
 #include "data_table.h"
+#include "cmsis_os.h"
 
 
 
@@ -25,6 +26,12 @@ typedef enum{
     CURRENT_POSITION_IDX,
     MAX_TABLE_IDX
 }TableIdx_e;
+
+
+
+
+/****************************** Public Variables *****************************/
+extern osMutexId dataTableLockHandle;
 
 
 
@@ -76,7 +83,9 @@ bool writeDataTable(uint8_t reg, uint16_t data){
     }
 
     // TODO: protect with a mutex
+    xSemaphoreTake(dataTableLockHandle, pdMS_TO_TICKS(1));
     table[idx] = data;
+    xSemaphoreGive(dataTableLockHandle);
 
     return true;
 }
@@ -88,7 +97,9 @@ bool readDataTable(uint8_t reg, uint16_t* data){
     }
 
     // TODO: protect with a mutex
+    xSemaphoreTake(dataTableLockHandle, pdMS_TO_TICKS(1));
     *data = table[idx];
+    xSemaphoreGive(dataTableLockHandle);
 
     return true;
 }
