@@ -1,10 +1,9 @@
 /**
   *****************************************************************************
-  * @file    rx_helpers.c
+  * @file    app_rx.c
   * @author  Tyler
   *
-  * @defgroup RX_Helpers RX Helpers
-  * @brief Helpers for receiving data from the master device
+  * @ingroup RX
   *****************************************************************************
   */
 
@@ -12,11 +11,12 @@
 
 
 /********************************* Includes **********************************/
+#include "App/app_rx.h"
+
 #include <string.h>
+
 #include "data_table.h"
-#include "rx_helpers.h"
 #include "helpers.h"
-#include "types.h"
 #include "usart.h"
 
 
@@ -115,13 +115,12 @@ static void processReadDataInst(){
         }
 
         uint8_t address = buff[5];
-        Data_t data;
-        data.id = id;
+        uint16_t pos;
         switch(address){
             case REG_CURRENT_POSITION:
                 readDataTable(
                     CURRENT_POSITION_IDX,
-                    &data.pos
+                    &pos
                 );
                 addressIsValid = true;
                 break;

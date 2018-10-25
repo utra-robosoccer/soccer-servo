@@ -1,10 +1,10 @@
 /**
   *****************************************************************************
-  * @file    control.h
+  * @file    app_tx.h
   * @author  Tyler
   *
-  * @defgroup Header
-  * @ingroup  Control
+  * @defgroup TX
+  * @brief Transmission helper functions
   * @{
   *****************************************************************************
   */
@@ -12,15 +12,16 @@
 
 
 
-#ifndef CONTROL_H
-#define CONTROL_H
+#ifndef APP_TX_H
+#define APP_TX_H
 
 
 
 
 /***************************** Function prototypes ***************************/
-void controlUpdateStateVariables();
-void controlUpdateSignals();
+void updateBufferContents(void);
+void transmitBufferContents(void);
+void txTimerEventHandler(void);
 
 
 
@@ -28,6 +29,6 @@ void controlUpdateSignals();
 /**
  * @}
  */
-/* end Header */
+/* end TX */
 
-#endif /* CONTROL_H */
+#endif /* APP_TX_H */

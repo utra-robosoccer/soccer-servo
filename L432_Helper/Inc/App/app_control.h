@@ -1,10 +1,10 @@
 /**
   *****************************************************************************
-  * @file    rx_helpers.h
+  * @file    app_control.h
   * @author  Tyler
   *
   * @defgroup Header
-  * @ingroup  RX_Helpers
+  * @ingroup  Control
   * @{
   *****************************************************************************
   */
@@ -12,22 +12,15 @@
 
 
 
-#ifndef RX_HELPERS_H_
-#define RX_HELPERS_H_
-
-
-
-
-/********************************* Includes **********************************/
-#include <stdint.h>
-#include <stdbool.h>
+#ifndef CONTROL_H
+#define CONTROL_H
 
 
 
 
 /***************************** Function prototypes ***************************/
-bool receive();
-void processData();
+void controlUpdateStateVariables();
+void controlUpdateSignals();
 
 
 
@@ -35,6 +28,6 @@ void processData();
 /**
  * @}
  */
-/* end - Header */
+/* end Header */
 
-#endif /* RX_HELPERS_H_ */
+#endif /* CONTROL_H */

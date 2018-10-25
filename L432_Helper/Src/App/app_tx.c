@@ -1,10 +1,9 @@
 /**
   *****************************************************************************
-  * @file    tx_helpers.c
+  * @file    app_tx.c
   * @author  Tyler
   *
-  * @defgroup TX_Helpers TX Helpers
-  * @brief Helpers for imitating motor transmissions
+  * @ingroup TX
   *****************************************************************************
   */
 
@@ -12,7 +11,7 @@
 
 
 /********************************* Includes **********************************/
-#include "tx_helpers.h"
+#include "App/app_tx.h"
 #include "helpers.h"
 #include "data_table.h"
 #include "usart.h"

@@ -47,15 +47,15 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
+#include "App/app_control.h"
+#include "App/app_rx.h"
+#include "App/app_tx.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "cmsis_os.h"
 
 /* USER CODE BEGIN Includes */     
 #include "helpers.h"
-#include "tx_helpers.h"
-#include "rx_helpers.h"
-#include "control.h"
 #include "lfsr.h"
 #include "data_table.h"
 /* USER CODE END Includes */

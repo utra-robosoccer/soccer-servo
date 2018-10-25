@@ -1,10 +1,10 @@
 /**
   *****************************************************************************
-  * @file    tx_helpers.h
+  * @file    app_rx.h
   * @author  Tyler
   *
-  * @defgroup Header
-  * @ingroup  TX_Helpers
+  * @defgroup RX
+  * @brief Helpers for receiving data from the master device
   * @{
   *****************************************************************************
   */
@@ -12,22 +12,21 @@
 
 
 
-#ifndef TX_HELPERS_H
-#define TX_HELPERS_H
+#ifndef APP_RX_H
+#define APP_RX_H
 
 
 
 
 /********************************* Includes **********************************/
-#include "types.h"
+#include <stdbool.h>
 
 
 
 
 /***************************** Function prototypes ***************************/
-void updateBufferContents(void);
-void transmitBufferContents(void);
-void txTimerEventHandler(void);
+bool receive();
+void processData();
 
 
 
@@ -35,6 +34,6 @@ void txTimerEventHandler(void);
 /**
  * @}
  */
-/* end Header */
+/* end - RX */
 
-#endif /* TX_HELPERS_H */
+#endif /* APP_RX_H */

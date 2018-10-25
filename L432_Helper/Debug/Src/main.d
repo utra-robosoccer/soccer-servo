@@ -53,8 +53,7 @@ Src/main.o: ../Src/main.c \
  D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/tim.h \
  D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/usart.h \
  D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/gpio.h \
- D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/tx_helpers.h \
- D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/types.h
+ D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/App/app_tx.h
 
 D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/main.h:
 
@@ -164,6 +163,4 @@ D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/usart.h:
 
 D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/gpio.h:
 
-D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/tx_helpers.h:
-
-D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/types.h:
+D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/App/app_tx.h:

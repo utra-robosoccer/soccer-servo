@@ -1,6 +1,6 @@
 /**
   *****************************************************************************
-  * @file    control.c
+  * @file    app_control.c
   * @author  Tyler
   *
   * @defgroup Control Control
@@ -12,8 +12,7 @@
 
 
 /********************************* Includes **********************************/
-#include "control.h"
-#include "types.h"
+#include "App/app_control.h"
 #include "data_table.h"
 
 

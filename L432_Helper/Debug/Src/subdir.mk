@@ -4,54 +4,45 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Src/control.c \
 ../Src/data_table.c \
 ../Src/dma.c \
 ../Src/freertos.c \
 ../Src/gpio.c \
 ../Src/helpers.c \
 ../Src/main.c \
-../Src/rx_helpers.c \
 ../Src/stm32l4xx_hal_msp.c \
 ../Src/stm32l4xx_hal_timebase_TIM.c \
 ../Src/stm32l4xx_it.c \
 ../Src/system_stm32l4xx.c \
 ../Src/tim.c \
-../Src/tx_helpers.c \
 ../Src/usart.c 
 
 OBJS += \
-./Src/control.o \
 ./Src/data_table.o \
 ./Src/dma.o \
 ./Src/freertos.o \
 ./Src/gpio.o \
 ./Src/helpers.o \
 ./Src/main.o \
-./Src/rx_helpers.o \
 ./Src/stm32l4xx_hal_msp.o \
 ./Src/stm32l4xx_hal_timebase_TIM.o \
 ./Src/stm32l4xx_it.o \
 ./Src/system_stm32l4xx.o \
 ./Src/tim.o \
-./Src/tx_helpers.o \
 ./Src/usart.o 
 
 C_DEPS += \
-./Src/control.d \
 ./Src/data_table.d \
 ./Src/dma.d \
 ./Src/freertos.d \
 ./Src/gpio.d \
 ./Src/helpers.d \
 ./Src/main.d \
-./Src/rx_helpers.d \
 ./Src/stm32l4xx_hal_msp.d \
 ./Src/stm32l4xx_hal_timebase_TIM.d \
 ./Src/stm32l4xx_it.d \
 ./Src/system_stm32l4xx.d \
 ./Src/tim.d \
-./Src/tx_helpers.d \
 ./Src/usart.d 
 
 

@@ -56,7 +56,7 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-#include "tx_helpers.h"
+#include "App/app_tx.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
