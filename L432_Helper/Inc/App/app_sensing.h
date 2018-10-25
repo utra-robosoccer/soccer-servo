@@ -1,10 +1,10 @@
 /**
   *****************************************************************************
-  * @file    app_control.h
+  * @file    app_sensing.h
   * @author  Tyler
   *
-  * @defgroup Control
-  * @brief Control routines
+  * @defgroup Sensing
+  * @brief Routines for acquiring sensor data
   * @{
   *****************************************************************************
   */
@@ -12,15 +12,14 @@
 
 
 
-#ifndef CONTROL_H
-#define CONTROL_H
+#ifndef APP_SENSING_H
+#define APP_SENSING_H
 
 
 
 
 /***************************** Function prototypes ***************************/
-void controlUpdateStateVariables();
-void controlUpdateSignals();
+void sensorUpdate(void);
 
 
 
@@ -28,6 +27,6 @@ void controlUpdateSignals();
 /**
  * @}
  */
-/* end Header */
+/* end - Sensing */
 
-#endif /* CONTROL_H */
+#endif /* APP_SENSING_H */

@@ -71,6 +71,6 @@ inline void lfsr_update(uint32_t* lfsr, const uint32_t polynomial){
 /**
  * @}
  */
-/* end TODO -- module name defined on line 7 */
+/* end - LFSR */
 
 #endif /* LFSR_H */

@@ -82,7 +82,6 @@ bool writeDataTable(uint8_t reg, uint16_t data){
         return false;
     }
 
-    // TODO: protect with a mutex
     xSemaphoreTake(dataTableLockHandle, pdMS_TO_TICKS(1));
     table[idx] = data;
     xSemaphoreGive(dataTableLockHandle);
@@ -96,7 +95,6 @@ bool readDataTable(uint8_t reg, uint16_t* data){
         return false;
     }
 
-    // TODO: protect with a mutex
     xSemaphoreTake(dataTableLockHandle, pdMS_TO_TICKS(1));
     *data = table[idx];
     xSemaphoreGive(dataTableLockHandle);

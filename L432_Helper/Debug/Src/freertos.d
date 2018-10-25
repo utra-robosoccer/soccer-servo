@@ -20,9 +20,9 @@ Src/freertos.o: ../Src/freertos.c \
  D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/App/app_rx.h \
  D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/App/app_tx.h \
  D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/App/app_control.h \
- D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/helpers.h \
- D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/lfsr.h \
- D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/data_table.h
+ D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/App/app_sensing.h \
+ D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/data_table.h \
+ D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/helpers.h
 
 D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 
@@ -66,8 +66,8 @@ D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/App/app_tx.h:
 
 D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/App/app_control.h:
 
-D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/helpers.h:
-
-D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/lfsr.h:
+D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/App/app_sensing.h:
 
 D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/data_table.h:
+
+D:/Users/Tyler/Documents/STM/soccer-servo/L432_Helper/Inc/helpers.h:

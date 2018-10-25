@@ -55,9 +55,9 @@
 #include "App/app_rx.h"
 #include "App/app_tx.h"
 #include "App/app_control.h"
-#include "helpers.h"
-#include "lfsr.h"
+#include "App/app_sensing.h"
 #include "data_table.h"
+#include "helpers.h"
 /* USER CODE END Includes */
 
 /* Variables -----------------------------------------------------------------*/
@@ -249,23 +249,7 @@ void StartSensorTask(void const * argument){
             pdMS_TO_TICKS(1)
         );
 
-        // TODO: add routine to read from sensors (perhaps ADC)
-        {
-            // Dummy routine (to be replaced with real implementation)
-            uint16_t data;
-            readDataTable(REG_GOAL_POSITION, &data);
-            static uint32_t lfsr = 0x2F; // Seed value
-            static uint32_t polynomial = POLY_MASK_PERIOD_63;
-
-            // Add statistical noise to the data
-            lfsr_update(&lfsr, polynomial);
-            int8_t noise = (lfsr >> 2) - 8;
-            if(data + noise > 0){
-                data = data + noise;
-            }
-            writeDataTable(REG_CURRENT_POSITION, data);
-        }
-
+        sensorUpdate();
     }
 }
 

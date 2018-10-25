@@ -3,8 +3,7 @@
   * @file    app_control.c
   * @author  Tyler
   *
-  * @defgroup Control Control
-  * @brief Control routines
+  * @ingroup Control
   *****************************************************************************
   */
 

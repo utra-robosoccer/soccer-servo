@@ -27,6 +27,7 @@
 "Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o"
 "Src/App/app_control.o"
 "Src/App/app_rx.o"
+"Src/App/app_sensing.o"
 "Src/App/app_tx.o"
 "Src/data_table.o"
 "Src/dma.o"
