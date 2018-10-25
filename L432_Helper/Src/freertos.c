@@ -47,14 +47,14 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "App/app_control.h"
-#include "App/app_rx.h"
-#include "App/app_tx.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "cmsis_os.h"
 
-/* USER CODE BEGIN Includes */     
+/* USER CODE BEGIN Includes */
+#include "App/app_rx.h"
+#include "App/app_tx.h"
+#include "App/app_control.h"
 #include "helpers.h"
 #include "lfsr.h"
 #include "data_table.h"
@@ -74,12 +74,14 @@ osStaticThreadDef_t ControlControlBlock;
 osThreadId SensorHandle;
 uint32_t SensorBuffer[ 128 ];
 osStaticThreadDef_t SensorControlBlock;
+osMessageQId commandQHandle;
+uint8_t commandQBuffer[ 1 * sizeof( uint8_t ) ];
+osStaticMessageQDef_t commandQControlBlock;
+osMutexId dataTableLockHandle;
+osStaticMutexDef_t dataTableLockControlBlock;
 
 /* USER CODE BEGIN Variables */
-/**
- * @brief ID of the motor, programmed into the data table in MX_FREERTOS_Init
- */
-static const uint16_t MY_ID = 0x01;
+
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
@@ -117,11 +119,13 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
 
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-  // Set the ID of this motor
-  writeDataTable(ID_IDX, MY_ID);
 
-  setOsStartFlag();
   /* USER CODE END Init */
+
+  /* Create the mutex(es) */
+  /* definition and creation of dataTableLock */
+  osMutexStaticDef(dataTableLock, &dataTableLockControlBlock);
+  dataTableLockHandle = osMutexCreate(osMutex(dataTableLock));
 
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
@@ -160,6 +164,11 @@ void MX_FREERTOS_Init(void) {
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
+  /* Create the queue(s) */
+  /* definition and creation of commandQ */
+  osMessageQStaticDef(commandQ, 1, uint8_t, commandQBuffer, &commandQControlBlock);
+  commandQHandle = osMessageCreate(osMessageQ(commandQ), NULL);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -180,8 +189,11 @@ void StartDefaultTask(void const * argument)
 
 /* USER CODE BEGIN Application */
 void StartRX(void const * argument){
-    bool statusIsOkay;
+    // ONE-TIME APPLICATION INIT CODE SINCE THIS IS THE HIGHEST-PRIORITY TASK
+    initDataTable();
+    setOsStartFlag();
 
+    bool statusIsOkay;
     for(;;){
         statusIsOkay = receive();
 
@@ -193,10 +205,17 @@ void StartRX(void const * argument){
 
 
 void StartTX(void const * argument){
+    uint8_t addressToRead;
     for(;;){
-        waitUntilNotifiedOrTimeout(NOTIFIED_FROM_TASK, portMAX_DELAY);
+        while(
+            xQueueReceive(
+                commandQHandle,
+                &addressToRead,
+                pdMS_TO_TICKS(1)
+            ) != pdTRUE
+        );
 
-        updateBufferContents();
+        updateBufferContents(addressToRead);
 
         transmitBufferContents();
     }
@@ -231,11 +250,10 @@ void StartSensorTask(void const * argument){
         );
 
         // TODO: add routine to read from sensors (perhaps ADC)
-
-        // Dummy routine (to be replaced with real implementation)
         {
+            // Dummy routine (to be replaced with real implementation)
             uint16_t data;
-            readDataTable(GOAL_POSITION_IDX, &data);
+            readDataTable(REG_GOAL_POSITION, &data);
             static uint32_t lfsr = 0x2F; // Seed value
             static uint32_t polynomial = POLY_MASK_PERIOD_63;
 
@@ -245,7 +263,7 @@ void StartSensorTask(void const * argument){
             if(data + noise > 0){
                 data = data + noise;
             }
-            writeDataTable(CURRENT_POSITION_IDX, data);
+            writeDataTable(REG_CURRENT_POSITION, data);
         }
 
     }

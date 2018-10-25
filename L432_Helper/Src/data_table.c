@@ -18,22 +18,60 @@
 
 
 
+/********************************** Types ************************************/
+typedef enum{
+    ID_IDX,
+    GOAL_POSITION_IDX,
+    CURRENT_POSITION_IDX,
+    MAX_TABLE_IDX
+}TableIdx_e;
+
+
+
+
 /***************************** Private Variables *****************************/
+/** @brief ID of the motor that is programmed in */
+static const uint16_t MY_ID = 0x01;
+
+/** @brief Master data table, analogous to a register map */
 static uint16_t table[MAX_TABLE_IDX];
 
 
 
 
-/******************************** Functions **********************************/
+/***************************** Private Functions *****************************/
 /**
- * @brief wrapper for safely writing to the motor data table
- * @param idx The index of the table entry to be written to
- * @param data The goal data received from master, or the data acquired from
- *        sensors, to be written into the data table
- * @return true if successful, otherwise false
+ * @brief Maps Dynamixel register addresses to internal register addresses
+ * @param dynamixelReg the Dynamixel register address
+ * @return the internal register address
  */
-bool writeDataTable(TableIdx_e idx, uint16_t data){
-    if(idx >= MAX_TABLE_IDX){
+static TableIdx_e map(uint8_t dynamixelReg){
+    TableIdx_e retval = MAX_TABLE_IDX;
+    switch(dynamixelReg){
+        case REG_ID:
+            retval = ID_IDX;
+            break;
+        case REG_GOAL_POSITION:
+            retval = GOAL_POSITION_IDX;
+            break;
+        case REG_CURRENT_POSITION:
+            retval = CURRENT_POSITION_IDX;
+            break;
+    }
+    return retval;
+}
+
+
+
+
+/******************************** Functions **********************************/
+void initDataTable(){
+    table[ID_IDX] = MY_ID; // The ID for this motor;
+}
+
+bool writeDataTable(uint8_t reg, uint16_t data){
+    TableIdx_e idx = map(reg);
+    if(idx == MAX_TABLE_IDX){
         return false;
     }
 
@@ -43,14 +81,9 @@ bool writeDataTable(TableIdx_e idx, uint16_t data){
     return true;
 }
 
-/**
- * @brief wrapper for safely reading from the motor data table
- * @param idx The index of the table entry to be read
- * @param[out] data Address where the requested table data should be copied
- * @return true if successful, otherwise false
- */
-bool readDataTable(TableIdx_e idx, uint16_t* data){
-    if(idx >= MAX_TABLE_IDX){
+bool readDataTable(uint8_t reg, uint16_t* data){
+    TableIdx_e idx = map(reg);
+    if(idx == MAX_TABLE_IDX){
         return false;
     }
 

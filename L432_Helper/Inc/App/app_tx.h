@@ -18,8 +18,14 @@
 
 
 
+/********************************* Includes **********************************/
+#include <stdint.h>
+
+
+
+
 /***************************** Function prototypes ***************************/
-void updateBufferContents(void);
+void updateBufferContents(uint8_t addressToRead);
 void transmitBufferContents(void);
 void txTimerEventHandler(void);
 

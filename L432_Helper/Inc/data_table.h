@@ -25,17 +25,23 @@
 
 
 
-/********************************** Types ************************************/
-typedef enum{
-    ID_IDX,
-    GOAL_POSITION_IDX,
-    CURRENT_POSITION_IDX,
-    MAX_TABLE_IDX
-}TableIdx_e;
+/******************************** Constants **********************************/
+#define REG_ID               0x03
+#define REG_GOAL_POSITION    0x1E
+#define REG_CURRENT_POSITION 0x24
+
 
 
 
 /***************************** Function prototypes ***************************/
+/**
+ * @brief One-time initialization code which set predetermined values for
+ *        some addresses in the table
+ * @note In the future, can be extended to read config value from non-volatile
+ *       memory
+ */
+void initDataTable();
+
 /**
  * @brief wrapper for safely writing to the motor data table
  * @param idx The index of the table entry to be written to
@@ -43,7 +49,7 @@ typedef enum{
  *        sensors, to be written into the data table
  * @return true if successful, otherwise false
  */
-bool writeDataTable(TableIdx_e idx, uint16_t data);
+bool writeDataTable(uint8_t reg, uint16_t data);
 
 /**
  * @brief wrapper for safely reading from the motor data table
@@ -51,7 +57,7 @@ bool writeDataTable(TableIdx_e idx, uint16_t data);
  * @param[out] data Address where the requested table data should be copied
  * @return true if successful, otherwise false
  */
-bool readDataTable(TableIdx_e idx, uint16_t* data);
+bool readDataTable(uint8_t reg, uint16_t* data);
 
 
 

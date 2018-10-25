@@ -27,8 +27,8 @@ static uint16_t currentPosition;
 
 /******************************** Functions **********************************/
 void controlUpdateStateVariables(){
-    readDataTable(GOAL_POSITION_IDX, &goalPosition);
-    readDataTable(CURRENT_POSITION_IDX, &currentPosition);
+    readDataTable(REG_GOAL_POSITION, &goalPosition);
+    readDataTable(REG_CURRENT_POSITION, &currentPosition);
     // TODO: etc...
 }
 

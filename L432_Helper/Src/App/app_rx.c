@@ -18,27 +18,22 @@
 #include "data_table.h"
 #include "helpers.h"
 #include "usart.h"
+#include "cmsis_os.h"
 
-
-
-
-/********************************** Macros ***********************************/
-#define INST_WRITE_DATA      0x03
-#define INST_READ_DATA       0x02
-#define REG_GOAL_POSITION    0x1E
-#define REG_CURRENT_POSITION 0x24
 
 
 
 /******************************** Constants **********************************/
-static const uint8_t NOTIFIED_FROM_RX_ISR = 0x40;
+#define INST_WRITE_DATA      0x03
+#define INST_READ_DATA       0x02
+#define NOTIFIED_FROM_RX_ISR 0x40
 
 
 
 
 /****************************** Public Variables *****************************/
 extern osThreadId RXHandle;
-extern osThreadId TXHandle;
+extern osMessageQId commandQHandle;
 
 
 
@@ -73,7 +68,7 @@ static void processWriteDataInst(){
         // Check the ID
         uint8_t id = buff[2];
         uint16_t myId;
-        readDataTable(ID_IDX, &myId);
+        readDataTable(REG_ID, &myId);
         if((uint8_t)myId != id){
             // Do not proceed if the ID in the packet is not the ID of this
             // motor
@@ -82,16 +77,10 @@ static void processWriteDataInst(){
 
         // Write data into the data table based on the address in the packet
         uint8_t address = buff[5];
-        switch(address){
-            case REG_GOAL_POSITION:
-                writeDataTable(
-                    GOAL_POSITION_IDX,
-                    buff[6] | (buff[7] << 8)
-                );
-                break;
-            default:
-                break;
-        }
+        writeDataTable(
+                address,
+            buff[6] | (buff[7] << 8)
+        );
     }
 }
 
@@ -104,10 +93,8 @@ static void processReadDataInst(){
 
     uint8_t id = buff[2];
     if(checksumIsValid){
-        bool addressIsValid = false;
-
         uint16_t myId;
-        readDataTable(ID_IDX, &myId);
+        readDataTable(REG_ID, &myId);
         if((uint8_t)myId != id){
             // Do not proceed if the ID in the packet is not the ID of this
             // motor
@@ -115,26 +102,7 @@ static void processReadDataInst(){
         }
 
         uint8_t address = buff[5];
-        uint16_t pos;
-        switch(address){
-            case REG_CURRENT_POSITION:
-                readDataTable(
-                    CURRENT_POSITION_IDX,
-                    &pos
-                );
-                addressIsValid = true;
-                break;
-            default:
-                break;
-        }
-        if(addressIsValid){
-            // TODO(tyler): make this a task notification
-            xTaskNotify(
-                TXHandle,
-                NOTIFIED_FROM_TASK,
-                eSetBits
-            );
-        }
+        xQueueSend(commandQHandle, &address, pdMS_TO_TICKS(1));
     }
 }
 

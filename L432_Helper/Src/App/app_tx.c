@@ -47,12 +47,12 @@ static volatile uint8_t buf[8] = {0xFF, 0xFF, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00
  *        the master device
  * @param data Pointer to the container specifying what needs to be sent back
  */
-void updateBufferContents(void){
+void updateBufferContents(uint8_t addressToRead){
     uint16_t id;
     uint16_t pos;
 
-    readDataTable(ID_IDX, &id);
-    readDataTable(CURRENT_POSITION_IDX, &pos);
+    readDataTable(REG_ID, &id);
+    readDataTable(REG_CURRENT_POSITION, &pos);
 
     buf[2] = (uint8_t)id;
     buf[5] = (uint8_t)(pos & 0xFF); // low byte
