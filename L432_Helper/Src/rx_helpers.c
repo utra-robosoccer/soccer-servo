@@ -101,7 +101,7 @@ static void processReadDataInst(){
     bool checksumIsValid = (computedChecksum == buff[7]);
 
     uint8_t id = buff[2];
-    if(checksumIsValid && (id <= NUM_MOTORS)){
+    if(checksumIsValid){
         bool addressIsValid = false;
 
         uint16_t myId;

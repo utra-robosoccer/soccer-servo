@@ -39,6 +39,10 @@ bool waitUntilNotifiedOrTimeout(
     TickType_t timeout
 );
 
+void setOsStartFlag();
+bool osHasStarted();
+
+
 
 
 /****************************** Inline Functions *****************************/

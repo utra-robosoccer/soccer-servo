@@ -51,7 +51,7 @@
 #include "task.h"
 #include "cmsis_os.h"
 
-/* USER CODE BEGIN Includes */
+/* USER CODE BEGIN Includes */     
 #include "usart.h"
 #include "types.h"
 #include "helpers.h"
@@ -124,6 +124,8 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
   // Set the ID of this motor
   writeDataTable(ID_IDX, MY_ID);
+
+  setOsStartFlag();
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */

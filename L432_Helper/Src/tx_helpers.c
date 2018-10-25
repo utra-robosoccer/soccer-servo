@@ -47,13 +47,13 @@ static volatile uint8_t buf[8] = {0xFF, 0xFF, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00
  * @param data Pointer to the container specifying what needs to be sent back
  */
 void update_buffer_contents(Data_t* data){
-    uint8_t id;
+    uint16_t id;
     uint16_t pos;
 
     readDataTable(ID_IDX, &id);
     readDataTable(CURRENT_POSITION_IDX, &pos);
 
-    buf[2] = id;
+    buf[2] = (uint8_t)id;
     buf[5] = (pos & 0xFF); // low byte
     buf[6] = (pos >> 8) & 0xFF; // high byte
     buf[7] = Dynamixel_ComputeChecksum((uint8_t*)buf, sizeof(buf));
@@ -63,7 +63,7 @@ void update_buffer_contents(Data_t* data){
  * @brief Sends the transmit buffer to the master device
  */
 void transmit_buffer_contents(void){
-    // TODO(tyler) replace this with a hardware timer of 120-150 us
+    // TODO(tyler) replace this with a hardware timer of 100 us
     osDelay(pdMS_TO_TICKS(1));
 
     HAL_UART_Transmit_DMA(&huart1, (uint8_t*)buf, 8);

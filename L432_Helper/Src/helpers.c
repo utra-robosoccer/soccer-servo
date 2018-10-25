@@ -17,6 +17,12 @@
 
 
 
+/******************************** Variables **********************************/
+static bool osStartFlag = false;
+
+
+
+
 /******************************** Functions **********************************/
 /** @see header */
 bool waitUntilNotifiedOrTimeout(
@@ -37,4 +43,12 @@ bool waitUntilNotifiedOrTimeout(
     }
 
     return retval;
+}
+
+void setOsStartFlag(){
+    osStartFlag = true;
+}
+
+bool osHasStarted(){
+    return osStartFlag;
 }
