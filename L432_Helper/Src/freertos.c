@@ -51,7 +51,7 @@
 #include "task.h"
 #include "cmsis_os.h"
 
-/* USER CODE BEGIN Includes */
+/* USER CODE BEGIN Includes */     
 #include "App/app_rx.h"
 #include "App/app_tx.h"
 #include "App/app_control.h"
@@ -224,6 +224,8 @@ void StartTX(void const * argument){
 void StartControlTask(void const * argument){
     TickType_t xLastWakeTime;
     xLastWakeTime = xTaskGetTickCount();
+
+    controlInit();
 
     for(;;){
         // Service this task once every ms

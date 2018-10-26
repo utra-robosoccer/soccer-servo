@@ -141,7 +141,7 @@ int main(void)
   uint32_t loops = 1;
   uint32_t numFailed = 0;
 
-  float position1 = 0;
+  float position1 = 0.0;
   float position2 = 150.0;
   float position3 = 180.0;
   float pos = position2;

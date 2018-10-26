@@ -19,6 +19,7 @@
 
 
 /***************************** Function prototypes ***************************/
+void controlInit();
 void controlUpdateStateVariables();
 void controlUpdateSignals();
 
