@@ -140,17 +140,24 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   uint32_t loops = 1;
   uint32_t numFailed = 0;
+
+  float position1 = 0;
+  float position2 = 150.0;
+  float position3 = 180.0;
+  float pos = position2;
+
+  enum {POS1, POS2, POS3} state;
   while (1)
   {
 
   /* USER CODE END WHILE */
-      success = motor.setGoalPosition(150.0);
+      success = motor.setGoalPosition(pos);
       motor2.setGoalPosition(200.0);
       motor3.setGoalPosition(10.0);
 
       motor2.getPosition(curPos);
       motor3.getPosition(curPos);
-//      HAL_Delay(1);
+
       success = motor.getPosition(curPos);
       if(!success){
           ++numFailed;
@@ -166,6 +173,21 @@ int main(void)
               static_cast<uint16_t>(num_printed),
               10
           );
+
+          switch(state){
+              case POS1:
+                  pos = position1;
+                  state = POS2;
+                  break;
+              case POS2:
+                  pos = position2;
+                  state = POS3;
+                  break;
+              case POS3:
+                  pos = position3;
+                  state = POS1;
+                  break;
+          }
       }
       ++loops;
   /* USER CODE BEGIN 3 */
