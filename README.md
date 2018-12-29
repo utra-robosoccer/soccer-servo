@@ -1,6 +1,5 @@
-# {Semi, Fully} Custom Servo
-The embedded code for custom/semi-custom servo goes here.
-
+# Semi Custom Servo
+The embedded code for semi-custom servo goes here.
 
 # L432_Helper
 Custom servo firmware. Poorly named (please someone fix it!).
